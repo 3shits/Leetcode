@@ -8,9 +8,12 @@ class Solution {
         {
             freq.putIfAbsent(nums[i],0);
             freq.computeIfPresent(nums[i],(k,v)->v+1);
-            if((double)freq.get(nums[i]) > (nums.length/2))
+        }
+        for(Integer i : freq.keySet())
+        {
+            if((double)freq.get(i) > (nums.length/2))
             {
-                elem = nums[i];
+                elem = i;
                 break;
             }
         }
