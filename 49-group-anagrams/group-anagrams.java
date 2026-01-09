@@ -3,12 +3,13 @@ import java.util.HashMap;
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
     HashMap<String,List<String>> check = new HashMap<>();
-    
+    char letters[];
+    String key;
     for(String str:strs)
     {
-        char letters[] = str.toCharArray();
+        letters =str.toCharArray();
         Arrays.sort(letters);
-        String key = Arrays.toString(letters);
+        key = Arrays.toString(letters);
         if(check.containsKey(key))
         check.get(key).add(str);
         else
