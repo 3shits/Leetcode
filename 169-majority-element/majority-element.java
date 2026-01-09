@@ -3,22 +3,16 @@ import java.util.HashMap;
 class Solution {
     public int majorityElement(int[] nums) {
         HashMap<Integer,Integer> freq = new HashMap<Integer,Integer>();
-        int elem = 0;
-        for(int i = 0 ;  i < nums.length ; i++)
+        double threshold = nums.length/2;
+        int max = 0;
+        for(int i:nums)
         {
-            freq.putIfAbsent(nums[i],0);
-            freq.computeIfPresent(nums[i],(k,v)->v+1);
+            freq.put(i,freq.getOrDefault(i,0)+1);
+            if(freq.get(i) > threshold)
+            max = i;
         }
-        for(Integer i : freq.keySet())
-        {
-            if((double)freq.get(i) > (nums.length/2))
-            {
-                elem = i;
-                break;
-            }
-        }
-        return elem;
-        
+        System.out.println(freq);
+        return max;
     }
     
 }
