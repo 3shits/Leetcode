@@ -9,7 +9,7 @@ class Solution {
             {
                 mapping += Math.exp(str.charAt(j) - 96);
             }
-            mapping = Math.round(mapping*100)/100.0;
+            mapping = Math.round(mapping* 100)/100.0;
             ArrayList<String> temp = check.getOrDefault(mapping,null);
             if(temp == null)
             {
@@ -21,7 +21,6 @@ class Solution {
             temp.add(str);
  
         }
-        System.out.println(check);
         List<List<String>> result = new ArrayList<>(check.values());
         return result;
 
