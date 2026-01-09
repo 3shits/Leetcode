@@ -1,24 +1,26 @@
-import java.util.HashMap;
-
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-    HashMap<String,List<String>> check = new HashMap<>();
-    char letters[];
-    String key;
-    for(String str:strs)
-    {
-        letters = str.toCharArray();
-        Arrays.sort(letters);
-        key = Arrays.toString(letters);
-        if(check.containsKey(key))
-        check.get(key).add(str);
-        else
+        HashMap<Double,ArrayList<String>> check = new HashMap<>();
+        for(String str:strs)
         {
-            List<String> temp = new ArrayList<>();
+            double mapping = 0;
+            for(int j = 0;  j < str.length() ; j++)
+            {
+                mapping += Math.exp(str.charAt(j) - 96);
+            }
+            mapping = Math.round(mapping* 100)/100.0;
+            ArrayList<String> temp = check.getOrDefault(mapping,null);
+            if(temp == null)
+            {
+                temp = new ArrayList<String>();
+                temp.add(str);
+                check.put(mapping,temp);
+            }
+            else
             temp.add(str);
-            check.put(key,temp);
         }
-    }
-    return new ArrayList<List<String>>(check.values());
+        List<List<String>> result = new ArrayList<>(check.values());
+        return result;
+
     }
 }
