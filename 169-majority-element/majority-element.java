@@ -11,7 +11,6 @@ class Solution {
             if(freq.get(i) > threshold)
             max = i;
         }
-        System.out.println(freq);
         return max;
     }
     
