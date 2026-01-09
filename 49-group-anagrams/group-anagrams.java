@@ -7,7 +7,7 @@ class Solution {
     String key;
     for(String str:strs)
     {
-        letters =str.toCharArray();
+        letters = str.toCharArray();
         Arrays.sort(letters);
         key = Arrays.toString(letters);
         if(check.containsKey(key))
@@ -19,8 +19,6 @@ class Solution {
             check.put(key,temp);
         }
     }
-    return  new ArrayList<List<String>>(check.values());
-        
-    
+    return new ArrayList<List<String>>(check.values());
     }
 }
