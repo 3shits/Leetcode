@@ -17,36 +17,52 @@ class MyHashMap {
     int len;
 
     public MyHashMap() {
-        len = 10001;
+        len = 1000;
         map = new Bucket[len];
     }
     
     public void put(int key, int value) {
         int index = key % len;
-        if(map[index] == null)
+        // if(map[index] == null)
+        // {
+        //     map[index] = new Bucket(key,value);
+        //     return;
+        // }
+        // if(map[index].key == key)
+        // {
+        //     map[index].value = value;
+        //     return;
+        // }
+        // else
+        // {
+        //     Bucket temp = map[index];
+        //     while(temp.next != null)
+        //     {
+        //         if(temp.key == key)
+        //         {
+        //         temp.value = value;
+        //         return;
+        //         }
+        //         temp = temp.next;
+        //     }
+        //     temp.next = new Bucket(key ,value);
+        // }
+        Bucket head = map[index];
+
+        Bucket curr = head;
+        while(curr != null)
         {
-            map[index] = new Bucket(key,value);
-            return;
-        }
-        if(map[index].key == key)
-        {
-            map[index].value = value;
-            return;
-        }
-        else
-        {
-            Bucket temp = map[index];
-            while(temp.next != null)
+            if(curr.key  == key)
             {
-                if(temp.key == key)
-                {
-                temp.value = value;
+                curr.value = value;
                 return;
-                }
-                temp = temp.next;
             }
-            temp.next = new Bucket(key ,value);
+            curr = curr.next;
         }
+
+        Bucket newBucket = new Bucket(key,value);
+        newBucket.next = head;
+        map[index] = newBucket;
     }
     
     public int get(int key) {
@@ -75,25 +91,45 @@ class MyHashMap {
     
     public void remove(int key) {
         int index = key % len;
-        if(map[index] == null)
-        return;
-        if(map[index].key == key)
+        // if(map[index] == null)
+        // return;
+        // if(map[index].key == key)
+        // {
+        //     map[index] = map[index].next;   
+        // }
+        // else
+        // {
+        //     Bucket temp = map[index];
+        //     while(temp.next != null)
+        //     {
+        //         if(temp.next.key == key)
+        //         {
+        //             temp.next = temp.next.next;
+        //             return;
+        //         }
+        //         temp = temp.next;
+        //     }
+        // }
+        Bucket curr = map[index] , prev = null;
+
+        while(curr != null)
         {
-            map[index] = map[index].next;   
-        }
-        else
-        {
-            Bucket temp = map[index];
-            while(temp.next != null)
+            if(curr.key == key)
             {
-                if(temp.next.key == key)
+                if(prev == null)
                 {
-                    temp.next = temp.next.next;
-                    return;
+                    map[index] = curr.next;
                 }
-                temp = temp.next;
+                else
+                {
+                    prev.next = curr.next;
+                }
+                return;
             }
+        prev = curr;
+        curr = curr.next;
         }
+
     }
 }
 
