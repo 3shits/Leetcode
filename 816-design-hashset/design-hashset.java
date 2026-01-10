@@ -5,7 +5,7 @@ class MyHashSet {
     int len;
     int set[];
     public MyHashSet() {
-        len = 10001;
+        len = 10003;
         set = new int[len];
         Arrays.fill(set,-1);
     }
