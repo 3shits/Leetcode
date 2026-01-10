@@ -67,26 +67,38 @@ class MyHashMap {
     
     public int get(int key) {
         int index = key % len;
-        if(map[index] == null)
-        return -1;
-        else
+        // if(map[index] == null)
+        // return -1;
+        // else
+        // {
+        //     if(map[index].key == key)
+        //     return map[index].value;
+
+        //     else
+        //     {
+        //         Bucket temp = map[index];
+        //         while(temp != null)
+        //         {
+        //             if(temp.key == key)
+        //             return temp.value;
+
+        //             temp = temp.next;
+        //         }
+        //         return -1;
+        //     }
+        // }
+
+        Bucket curr = map[index];
+        while(curr != null)
         {
-            if(map[index].key == key)
-            return map[index].value;
-
-            else
+            if(curr.key == key)
             {
-                Bucket temp = map[index];
-                while(temp != null)
-                {
-                    if(temp.key == key)
-                    return temp.value;
-
-                    temp = temp.next;
-                }
-                return -1;
+                return curr.value;
             }
+            curr = curr.next;
         }
+        return -1;
+
     }
     
     public void remove(int key) {
