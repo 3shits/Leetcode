@@ -5,7 +5,7 @@ class MyHashSet {
     int len;
     int set[];
     public MyHashSet() {
-        len = 10003;
+        len = 10001;
         set = new int[len];
         Arrays.fill(set,-1);
     }
@@ -13,24 +13,14 @@ class MyHashSet {
     public void add(int key) {
         int index = key % len;
         if(set[index] == -1 || set[index] == key)
-        {
-            set[index] = key;
-        }
+        set[index] = key;
         else
         {
-            index++;
-            while(index < len)
+            while(set[index] != -1)
             {
-                if(set[index] == -1 )
-                break;
-                if(index == len - 1)
-                index = 0;
-                if(index == key % len)
-                {
-                    System.out.println("Full");
-                    return;
-                }
                 index++;
+                if(index == len - 1)
+                return;
             }
             set[index] = key;
         }
@@ -40,54 +30,35 @@ class MyHashSet {
          int index = key % len;
          if(set[index] == key)
          {
-         set[index] = -1;
-         return;
+            set[index] = -1;
          }
          else
          {
-            index++;
-            while(index < len)
+            while(set[index] != key)
             {
-                if(set[index] == key)
-                {
-                    set[index] = -1;
-                    return;
-                }
+                index++;
                 if(index == len - 1)
-                index = 0;
-                if(index == key % len)
                 {
-                    System.out.println("Not found");
+                System.out.println("Exceeded");
                 return;
                 }
-                index++;
+                if(set[index]== key)
+                set[index] = -1;
             }
          }
     }
     
     public boolean contains(int key) {
         int index = key % len;
-      if(set[index] == key)
-         {
-         return true;
-         }
+         if(set[index] == key)
+            return true;
          else
          {
-            index++;
-            while(index < len)
+            while(index != len -1)
             {
-                if(set[index] == key)
-                {  
-                    return true;
-                }
-                if(index == len - 1)
-                index = 0;
-                if(index == key % len)
-                {
-                    System.out.println("Not found");
-                return false;
-                }
                 index++;
+                if(set[index]== key)
+                return true;
             }
             return false;
          }
