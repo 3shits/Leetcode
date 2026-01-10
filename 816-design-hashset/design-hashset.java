@@ -5,12 +5,17 @@ class MyHashSet {
     public MyHashSet() {
         len = 100000;
         set = new int[len];
-        Arrays.fill(set,-1);
+        
     }
 
     public void add(int key) {
         int index = key % len;
-        if(set[index] == -1)
+        if(key == 0)
+        {
+        set[index] = 1;
+        return;
+        }
+        if(set[index] == 0)
         {
             set[index] = key;
         }
@@ -20,7 +25,7 @@ class MyHashSet {
             return;
             else
             {
-            while(set[index] != -1)
+            while(set[index] != 0)
             {
                 index++;
                 if(index == len - 1)
@@ -36,9 +41,14 @@ class MyHashSet {
     
     public void remove(int key) {
          int index = key % len;
+         if(key == 0 && set[index] == 1)
+         {
+            set[index] = 0;
+            return;
+         }
          if(set[index] == key)
          {
-            set[index] = -1;
+            set[index] = 0;
          }
          else
          {
@@ -51,7 +61,7 @@ class MyHashSet {
                 return;
                 }
                 if(set[index]== key)
-                set[index] = -1;
+                set[index] = 0;
             }
          }
 
@@ -59,6 +69,11 @@ class MyHashSet {
     
     public boolean contains(int key) {
         int index = key % len;
+        if(key == 0)
+        {
+            return set[index] == 1? true:false;
+        }
+
          if(set[index] == key)
          {
             return true;
