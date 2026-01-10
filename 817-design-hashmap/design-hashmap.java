@@ -1,15 +1,13 @@
 class MyHashMap {
 
     class Bucket{
-        int key;
-        int value;
+        int key,value;
         Bucket next;
 
         public Bucket(int key, int value)
         {
             this.key = key;
             this.value = value;
-            this.next = null;
         }
     }
 
@@ -51,31 +49,26 @@ class MyHashMap {
             curr = curr.next;
         }
         return -1;
-
     }
     
     public void remove(int key) {
         int index = key % len;
         Bucket curr = map[index] , prev = null;
-
         while(curr != null)
         {
             if(curr.key == key)
             {
                 if(prev == null)
-                {
-                    map[index] = curr.next;
-                }
+                map[index] = curr.next;
+                
                 else
-                {
-                    prev.next = curr.next;
-                }
+                prev.next = curr.next;
+
                 return;
             }
         prev = curr;
         curr = curr.next;
         }
-
     }
 }
 
