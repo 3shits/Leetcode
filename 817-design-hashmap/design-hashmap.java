@@ -15,7 +15,7 @@ class MyHashMap {
     int len;
 
     public MyHashMap() {
-        len = 1000;
+        len = 100;
         map = new Bucket[len];
     }
     
