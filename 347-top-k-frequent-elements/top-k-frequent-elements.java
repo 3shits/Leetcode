@@ -15,6 +15,8 @@ class Solution {
                 heapifyUp(pqueue , parent);
             }
         }
+        else
+        return;
     }
 
     public void heapifyDown(List<Map.Entry<Integer,Integer>> pqueue , int n , int i)
@@ -33,7 +35,9 @@ class Solution {
             pqueue.set(i,pqueue.get(smallest));
             pqueue.set(smallest,temp);
             heapifyDown(pqueue,pqueue.size(), smallest);
-        }  
+        }
+        else
+        return;  
     }
 
 
@@ -44,7 +48,6 @@ class Solution {
         for(int i:nums)
         map.put(i , map.getOrDefault(i,0)+1);
 
-        System.out.println(map);
         for(Map.Entry<Integer,Integer> freq:map.entrySet())
         {
             pqueue.add(freq);
@@ -52,12 +55,12 @@ class Solution {
             heapifyUp(pqueue,len-1);
             if(pqueue.size() > k)
             {
-            Map.Entry<Integer,Integer> temp = pqueue.get(len - 1);
-            pqueue.set(0, temp);
-            pqueue.remove(len-1);
-            heapifyDown(pqueue,pqueue.size(),0);
+                pqueue.set(0, pqueue.get(len - 1));
+                pqueue.remove(len-1);
+                heapifyDown(pqueue,pqueue.size(),0);
             }
         }
+
         for(int i = 0 ; i<k ;i++)
         res[i] = pqueue.get(i).getKey();
         return res;
