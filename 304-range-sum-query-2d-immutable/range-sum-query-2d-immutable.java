@@ -12,7 +12,8 @@ class NumMatrix {
     }
     
     public int sumRegion(int row1, int col1, int row2, int col2) {
-        return prefmatrix[row2+1][col2+1] - prefmatrix[row1][col2+1] - prefmatrix[row2+1][col1] + prefmatrix[row1][col1];   
+        int sum = prefmatrix[row2+1][col2+1] - prefmatrix[row1][col2+1] - prefmatrix[row2+1][col1] + prefmatrix[row1][col1];   
+        return sum;
     }
 }
 
