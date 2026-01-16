@@ -1,20 +1,23 @@
 import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.HashSet;
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
         int n = nums.length;
         int threshold = n/3;
         HashMap<Integer,Integer> freq = new HashMap<>();
-        List<Integer> res = new ArrayList<>();
+        HashSet<Integer> res = new HashSet<>();
         for(int i :nums)
-        freq.put(i , freq.getOrDefault(i,0)+1);
-
-        for(Integer i:freq.keySet())
         {
+            freq.put(i , freq.getOrDefault(i,0)+1);
             if(freq.get(i) > threshold)
             res.add(i);
         }
+
+        // for(Integer i:freq.keySet())
+        // {
+            
+        // }
         
-        return res;
+        return new ArrayList<Integer>(res);
     }
 }
