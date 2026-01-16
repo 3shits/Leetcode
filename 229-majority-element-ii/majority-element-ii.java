@@ -5,7 +5,7 @@ class Solution {
         int n = nums.length;
         int threshold = n/3;
         HashMap<Integer,Integer> freq = new HashMap<>();
-        HashSet<Integer> res = new HashSet<>();
+        ArrayList<Integer> res = new ArrayList<>();
         for(int i :nums)
         {
             freq.put(i , freq.getOrDefault(i,0)+1);
@@ -18,6 +18,6 @@ class Solution {
             
         // }
         
-        return new ArrayList<Integer>(res);
+        return res;
     }
 }
