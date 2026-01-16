@@ -7,10 +7,10 @@ class Solution {
         for(int i :nums)
         freq.put(i , freq.getOrDefault(i,0)+1);
 
-        for(Integer i:freq.keySet())
+        for(int k:freq.keySet())
         {
-            if(freq.get(i) > nums.length/3)
-            res.add(i);
+            if(freq.get(k) > nums.length/3)
+            res.add(k);
         }
         
         return res;
