@@ -2,7 +2,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
-        int n = nums.length;
         HashMap<Integer,Integer> freq = new HashMap<>();
         List<Integer> res = new ArrayList<>();
         for(int i :nums)
@@ -10,7 +9,7 @@ class Solution {
 
         for(Integer i:freq.keySet())
         {
-            if(freq.get(i) > n/3)
+            if(freq.get(i) > nums.length/3)
             res.add(i);
         }
         
