@@ -9,7 +9,7 @@ class Solution {
         for(int i :nums)
         {
             freq.put(i , freq.getOrDefault(i,0)+1);
-            if(freq.get(i) > threshold)
+            if(freq.get(i) > threshold && !res.contains(i))
             res.add(i);
         }
 
