@@ -22,7 +22,8 @@ class Solution {
                     post++;
                     tempseq++;
                 }
-                seq = Math.max(seq,tempseq);
+                if(tempseq > seq)
+                seq = tempseq;
            }
         }
         return seq;
