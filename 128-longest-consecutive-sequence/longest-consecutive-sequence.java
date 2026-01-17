@@ -3,7 +3,6 @@ class Solution {
 
     public int longestConsecutive(int[] nums) {
         HashSet<Integer> rel = new HashSet<>();
-        HashSet<Integer>prevrels = new HashSet<>();
         int seq = 0;
 
         if(nums.length < 2)
@@ -14,21 +13,18 @@ class Solution {
 
         for(int i:rel)
         {
-            
-            int post = i+1;
-            if(rel.contains(post) && !prevrels.contains(post))
-            {
-                int temp = 1;
+           if(!rel.contains(i-1))
+           {
+                int post = i+1;
+                int tempseq = 1;
                 while(rel.contains(post))
                 {
-                    prevrels.add(post);
                     post++;
-                    temp++;
+                    tempseq++;
                 }
-                if(temp > seq)
-                seq = temp;
-            }
+                seq = Math.max(seq,tempseq);
+           }
         }
-        return seq==0?1:seq;
+        return seq;
     }
 }
