@@ -2,6 +2,9 @@ import java.util.HashSet;
 class Solution {
     public boolean isValidSudoku(char[][] board) {
         HashSet<Character> check = new HashSet<>();
+        // HashSet<Character> row = new HashSet<>();
+        // HashSet<Character> col = new HashSet<>();
+        // HashMap<Integer,Character> sq = new HashSet<>();
         for(int i = 0;  i < board.length ; i++)
         {
             check.clear();
@@ -12,11 +15,11 @@ class Solution {
                 else
                 {
                     if(board[i][j] != '.')
-                check.add(board[i][j]);
+                    check.add(board[i][j]);
                 }
             }
         }
-        System.out.println("C");
+        
         check.clear();
         for(int i = 0;  i < board.length ; i++)
         {
@@ -32,15 +35,14 @@ class Solution {
                 }
             }
         }
-        System.out.println(check);
+        
         check.clear();
-        System.out.println("C");
         for(int i = 0 ; i < 3 ; i++)
         {
             
             for(int j = 0 ; j < 3 ; j++)
             {
-                System.out.print(check);
+                
                 check.clear();
                 for(int x = i*3 ; x < (i+1)*3 ; x++)
                 {
@@ -57,7 +59,7 @@ class Solution {
                 }
             }
         }
-        System.out.println("C");
+        
         return true;
 
     }
