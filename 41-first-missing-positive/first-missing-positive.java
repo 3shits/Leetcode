@@ -1,7 +1,5 @@
-import java.util.HashMap;
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        HashMap<Integer,Integer> map = new HashMap<>();
         int lowest = 1;
         for(int i = 0 ; i < nums.length ; i++)
         {
