@@ -11,13 +11,16 @@ class Solution {
             }
         }
 
-        for(int i: nums)
+        for(int i = 1 ;  i <= nums.length+1 ;i++)
         {
-            if(map.containsKey(lowest))
-            lowest++;
+            if(!map.containsKey(i))
+            {
+                lowest = i;
+                break;
+            }
         }
         
     return lowest;
         
-}
+    }
 }
