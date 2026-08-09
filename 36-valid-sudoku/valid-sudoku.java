@@ -1,53 +1,44 @@
-import java.util.HashSet;
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        HashSet<Character> check = new HashSet<>();
-        HashSet<Character> row = new HashSet<>();
-        HashSet<Character> col = new HashSet<>();
-        // HashMap<Integer,Character> sq = new HashSet<>();
-        for(int i = 0;  i < board.length ; i++)
-        {
-            row.clear();
-            col.clear();
-            for(int j = 0; j < board[i].length ; j++)
-            {
-                if(row.contains(board[i][j])|| col.contains(board[j][i]))
-                return false;
-                else
-                {
-                    if(board[i][j] != '.')
-                    row.add(board[i][j]);
-                    if(board[j][i] != '.')
-                    col.add(board[j][i]);
-                }
-            }
-        }
-        
-    
-        for(int i = 0 ; i < 3 ; i++)
-        {
-            
-            for(int j = 0 ; j < 3 ; j++)
-            {
-                
-                check.clear();
-                for(int x = i*3 ; x < (i+1)*3 ; x++)
-                {
-                    for(int y = j*3 ;  y < (j+1)*3; y++)
-                    {
-                        if(check.contains(board[x][y]))
-                        return false;
-                        else
-                        {
-                            if(board[x][y] != '.')
-                            check.add(board[x][y]);
-                        }
-                    }
-                }
-            }
-        }
-        
-        return true;
+        char rows[],cols[],box[];
 
+        for(int i = 0 ;  i < board.length ;i++)
+        {
+            rows = new char[9];
+            cols = new char[9];
+            box = new char[9];
+            for(int j = 0 ;  j < board[i].length ; j++)
+            {
+                if(board[i][j] != '.')
+                {
+                char row = rows[(int)board[i][j]-1 - '0'];
+                if(row == '\0')
+                rows[(int)board[i][j]-1-'0'] = board[i][j];
+                else
+                return false;
+                }
+                
+                if(board[j][i] != '.')
+                {
+                char col = cols[(int)board[j][i]-1-'0'];
+                if(col == '\0')
+                cols[(int)board[j][i]-1-'0']= board[j][i];
+                else
+                return false;
+                }
+            
+            char check = board[(j/3)+(3*(i/3))][(j%3)+(3*(i%3))];
+            if(check != '.')
+            {
+                char c = box[(int)check -'0' - 1];
+                if(c == '\0')
+                box[(int)check -'0' - 1] = check;
+                else
+                return false;
+            }
+            }
+        }
+        return true;
+      
     }
 }
