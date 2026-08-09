@@ -4,7 +4,7 @@ class Solution {
         int tail = 0;
         for(char c: s.toCharArray())
         {
-            if(tail < -1)
+            if(tail < 0)
             break;
 
             if(c == ')'&& stack[tail] == '(') 
