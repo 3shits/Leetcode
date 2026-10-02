@@ -35,7 +35,11 @@ class Solution {
             if(!flag)
             arr.push(asteroids[i]);
         }
-        int[] res = arr.stream().mapToInt(Integer::intValue).toArray();
+        int[] res= new int[arr.size()];
+        for (int i = res.length - 1; i >= 0; i--) {
+            res[i] = arr.pop();
+        }
+
         return res;
     }
 }
