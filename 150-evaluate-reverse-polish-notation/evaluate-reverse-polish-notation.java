@@ -29,6 +29,7 @@ class Solution {
             break;
             default:
             arr.push(Integer.valueOf(tokens[i]));
+            break;
         }
     }
 
