@@ -1,31 +1,34 @@
-import java.util.Stack;
+
 class StockSpanner {
 
-    Stack<int[]> st;
+    int[] prices;
+    int[] spans;
+    int front = -1;
     public StockSpanner() {
-        st = new Stack<>();
+        prices = new int[1000];
+        spans = new int[1000];
     }
     
     public int next(int price) {
-        if(this.st.isEmpty())
+        if(this.front == -1)
         {
-            this.st.push(new int[]{price,1});
+            this.prices[++front] = price;
+            this.spans[front] = 1;
             return 1;
         }
-        int[] top = this.st.peek();
+        
         int span = 1;
-        while(top[0] <= price)
+        while(this.prices[front] <= price)
         {
-            span += top[1];
-            this.st.pop();
+            span += this.spans[front];
+            --front;
 
-            if(this.st.isEmpty())
+            if(front == -1)
             break;
-            
-            top = this.st.peek();
         }
 
-        this.st.push(new int[]{price,span});
+        this.prices[++front] = price;
+        this.spans[front] = span;
         return span;
     }
 }
