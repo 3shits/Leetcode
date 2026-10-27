@@ -20,7 +20,6 @@ class Solution {
                         st[++top] = token;
                         st[++top] = "/";
                     }
-                    System.out.println(token);
                 }
             stInd = i+1;
            }
@@ -36,13 +35,11 @@ class Solution {
                 st[++top] = token;
                 st[++top] = "/";
             }
-            System.out.println(token);
         }
         
         if(top != 0)
         --top;
 
-        System.out.println(Arrays.toString(st));
         String result = "";
         for( i = 0 ; i <= top ; i++)
         {
