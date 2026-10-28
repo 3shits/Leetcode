@@ -6,7 +6,6 @@ class Solution {
         int remi = 0 , remj = 0;
         while(i<j)
         {
-
             if(s.charAt(i) != s.charAt(j))
             {
                 if(!removedi)
@@ -29,9 +28,7 @@ class Solution {
                     else
                     return false;
                 }
-             
             }
-            
             i++;
             j--;
             
