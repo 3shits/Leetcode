@@ -1,18 +1,29 @@
-import java.util.Arrays;
 class Solution {
-
     public void rotate(int[] nums, int k) {
-        int n = (k < nums.length - 1) ? k : (k%(nums.length));
-        int nums_cpy[] = Arrays.copyOfRange(nums,nums.length-n,nums.length);
-        for(int i = nums.length - (n+1) ; i >= 0 ; i--)
-        {
-            nums[i+n] = nums[i];
-        }
-        for(int i = 0 ; i < n ; i++)
-        {
-            nums[i] = nums_cpy[i];
-        }
         
+        k = k % nums.length;
 
-}
+        for(int i = 0 ; i < nums.length/2 ; i++)
+        {
+            int temp = nums[i];
+            nums[i] = nums[nums.length - 1 - i];
+            nums[nums.length - 1 - i] = temp;
+        }
+
+        for(int i = k  ; i < (nums.length+k)/2 ; i++)
+        {
+            int temp = nums[i];
+            nums[i] = nums[nums.length - i + k -1];
+            nums[nums.length - i + k - 1] = temp;
+        }
+
+       
+        for(int i = 0 ; i < k/2 ; i++)
+        {
+            int temp = nums[i];
+            nums[i] = nums[k - 1 - i];
+            nums[k - 1 - i] = temp;
+        }
+       
+    }
 }
