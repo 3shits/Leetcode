@@ -8,7 +8,6 @@ public:
         {
 
             int mid = st + (end-st)/2;
-            cout << mid << '\n';
             if(nums[mid] >= target)
             {
                 if(mid != nums.size() - 1 && nums[mid] > nums[mid+1])
