@@ -1,14 +1,16 @@
-
+#include <algorithm>
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        int max = 0;
+        // int max = 0;
 
-        for(int i:piles)
-        {
-            if(i > max)
-            max = i;
-        }
+        // for(int i:piles)
+        // {
+        //     if(i > max)
+        //     max = i;
+        // }
+
+        int max = *std::max_element(piles.begin() , piles.end());
 
         int st = 1;
         int res = max;
