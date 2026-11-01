@@ -4,8 +4,8 @@ public:
         int sum = 0 , max = 0;
         for(int w : weights)
         {
-        sum += w;
-        max = std::max(w,max);
+            sum += w;
+            max = std::max(w,max);
         }
 
         int st = max , res = sum;
@@ -25,7 +25,7 @@ public:
 
                 total-= w;
             }
-            
+
             if(count <= days)
             {
                 res = std::min(res,mid);
