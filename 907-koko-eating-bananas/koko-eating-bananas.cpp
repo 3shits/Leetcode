@@ -2,15 +2,10 @@
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        // int max = 0;
+        int max = 0;
 
-        // for(int i:piles)
-        // {
-        //     if(i > max)
-        //     max = i;
-        // }
-
-        int max = *std::max_element(piles.begin() , piles.end());
+        for(int i:piles)
+        max = std::max(i ,max);
 
         int st = 1;
         int res = max;
@@ -19,7 +14,7 @@ public:
             int mid = st + (max - st)/2;
             long hours = 0;
             for(int i : piles)                
-            hours += ceil(i/(double)mid);
+            hours += i/mid + ((i % mid)!= 0);
 
             if(hours <= h)
             {
