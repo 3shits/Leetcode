@@ -8,8 +8,6 @@ public:
         while(st <= end && compare < nums.size())
         {
             int mid = st + (end - st)/2;
-            cout << nums[mid] << '\n';
-            cout << nums[compare] << '\n';
             if(nums[mid] > target)
             {
                 if(target > nums[compare])
