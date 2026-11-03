@@ -12,19 +12,19 @@ public:
     }
     
     void set(string key, string value, int timestamp) {
-        tmap[key].push_back({value,timestamp});
+        tmap[key].emplace_back(value,timestamp);
     }
     
     string get(string key, int timestamp) {
-        vector<MapValue>& t = tmap[key];
+        const vector<MapValue>& t = tmap[key];
         int st = 0 , end = (int)t.size()-1;
-        std::string res = "";
+        int res = -1;
         while(st <= end)
         {
             int mid = st + (end - st)/2;
             if(t[mid].timestamp <= timestamp)
             {
-                res = t[mid].val;
+                res = mid;
                 st = mid + 1;
             }
             else
@@ -32,7 +32,7 @@ public:
         }
         
 
-        return res;
+        return res != -1 ? t[res].val : "";
     }
 };
 
