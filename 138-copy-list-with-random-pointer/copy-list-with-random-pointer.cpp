@@ -14,6 +14,8 @@ public:
 };
 */
 
+#import <unordered_map>
+
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
@@ -21,40 +23,57 @@ public:
         return head;
 
         Node *t = head;
+        unordered_map<Node*,Node*> copies;
 
-        while(t != nullptr)
+        while(t)
         {
-            Node *temp = t->next;
-            Node *copy = new Node(t->val);
-            copy->next = temp;
-            t->next = copy;
-            t = temp;
+            copies[t] = new Node(t->val);
+            t = t->next;
         }
 
         t = head;
-
-        while(t != nullptr)
-        {
-            if(t->random)
-            t->next->random = t->random->next;
-
-            t = t->next->next;
-        }
-
-        Node *h = head->next;
+        Node *h = copies[t];
         Node *t2 = h;
-        t = head;
-
-        while(t != nullptr)
+        while(t)
         {
-            t->next = t->next->next;
-
-            if(t2->next != nullptr)
-            t2->next = t2->next->next;
-            
+            t2->random = copies[t->random];
+            t2->next = copies[t->next];
             t = t->next;
             t2 = t2->next;
         }
+        // while(t != nullptr)
+        // {
+        //     Node *temp = t->next;
+        //     Node *copy = new Node(t->val);
+        //     copy->next = temp;
+        //     t->next = copy;
+        //     t = temp;
+        // }
+
+        // t = head;
+
+        // while(t != nullptr)
+        // {
+        //     if(t->random)
+        //     t->next->random = t->random->next;
+
+        //     t = t->next->next;
+        // }
+
+        // Node *h = head->next;
+        // Node *t2 = h;
+        // t = head;
+
+        // while(t != nullptr)
+        // {
+        //     t->next = t->next->next;
+
+        //     if(t2->next != nullptr)
+        //     t2->next = t2->next->next;
+
+        //     t = t->next;
+        //     t2 = t2->next;
+        // }
 
         return h;
     }
