@@ -37,7 +37,6 @@ public:
         {
             if(t->random)
             t->next->random = t->random->next;
-
             t = t->next->next;
         }
 
