@@ -1,18 +1,45 @@
+struct Node{
+    int val;
+    Node *next;
+
+    Node(int v)
+    {
+        val = v;
+        next = nullptr;
+    }
+    Node(int v , Node *n)
+    {
+        val = v;
+        next = n;
+    }
+
+};
+
 class MyCircularQueue {
 public:
-    int *arr , size , front = 0 , rear = 0;
+    Node *front , *rear ;
+    int size , capacity;
     MyCircularQueue(int k) {
-        arr = new int[k];
-        size = k;
+        front = nullptr , rear = nullptr;
+        size = 0 , capacity = k;
     }
     
     bool enQueue(int value) {
         if(this->isFull())
         return false;
-        
 
-        arr[rear % size] = value;
-        rear++;
+        if(this->isEmpty())
+        {
+            rear = new Node(value);
+            front = rear;
+            rear->next = front;
+        }
+        else
+        {
+            rear->next = new Node(value , front);
+            rear = rear->next;
+        }
+        size++;
         return true;
     }
     
@@ -20,30 +47,29 @@ public:
         if(this->isEmpty())
         return false;
 
-        front++;
+        if(front == rear)
+        front = rear = nullptr;
+        else
+        front = front->next;
+
+        size--;
         return true;
     }
     
     int Front() {
-        if(!this->isEmpty())
-        return arr[front % size];
-
-        return -1;
+        return front != nullptr ? front->val : -1;
     }
     
     int Rear() {
-        if(!this->isEmpty())
-        return arr[(rear-1) % size];
-
-        return -1;
+        return rear != nullptr ? rear->val : -1;
     }
     
     bool isEmpty() {
-        return front == rear ;
+        return size == 0;
     }
     
     bool isFull() {
-        return rear - front == size;
+        return size == capacity;
     }
 };
 
