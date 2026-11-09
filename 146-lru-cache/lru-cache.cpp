@@ -71,10 +71,8 @@ public:
         {
             if(size > capacity - 1)
             {
-                cout << "erase:" <<rear->key <<'\n';
                 nodes.erase(rear->key);
                 rear = rear->prev;
-                cout << "erased";
             }
             else
             size++;
@@ -84,7 +82,7 @@ public:
 
             if(!rear)
             rear = newNode;
-            
+
             front = newNode;
         }
 
