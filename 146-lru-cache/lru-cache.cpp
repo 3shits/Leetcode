@@ -1,5 +1,5 @@
-#import <unordered_map>
-
+class LRUCache {
+private:
 struct Node{
     int key;
     int value;
@@ -15,7 +15,7 @@ struct Node{
     }
 };
 
-class LRUCache {
+
 public:
     int capacity , size = 0;
     Node *front , *rear;
