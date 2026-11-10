@@ -1,4 +1,5 @@
 #include <limits>
+
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
@@ -26,7 +27,6 @@ public:
             Ar = i+1 < m ?(*A)[i+1] : numeric_limits<int>::max();
             Bl = j >= 0 ? (*B)[j] :numeric_limits<int>::min();
             Br = j+1 < n ?(*B)[j+1] : numeric_limits<int>::max();
-            cout << Al << '\n' << Ar <<'\n'<< Bl << '\n' << Br <<'\n';
             if(Al <= Br && Bl <= Ar)
             {
                 if((m+n) % 2 != 0)
