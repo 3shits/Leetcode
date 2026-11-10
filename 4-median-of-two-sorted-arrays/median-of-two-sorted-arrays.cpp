@@ -12,7 +12,7 @@ public:
 
         while(st <= end)
         {
-            int i = (st + end)/2;
+            int i = st + (end - st)/2;
             int j = (m+n+1)/2 - i;
 
             int Al = i == 0 ? numeric_limits<int>::min() : nums1[i - 1];
