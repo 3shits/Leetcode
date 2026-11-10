@@ -1,43 +1,38 @@
 #include <limits>
-
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         
-        vector<int> *A = &nums1 , *B = &nums2;
-        if(nums1.size() > nums2.size())
-        B = &nums1 , A = &nums2;
-        
-        int m = A->size() , n = B->size();
-        if(m == 0)
-        {
-            A = B;
-            m = n;
-        }
+        int m = nums1.size() , n = nums2.size();
 
-        int st = 0 , end = m - 1 , half = std::ceil((m + n)/2.0);
-        cout << half << '\n';
-        while(true)
-        {
-            int i = std::floor((double)st + (end - st)/2.0);
-            int j = half - i - 2;
+        if(m > n)
+        return findMedianSortedArrays(nums2,nums1);
 
-            double Al , Ar , Bl , Br;
-            Al = i >= 0 ? (*A)[i] : numeric_limits<int>::min();
-            Ar = i+1 < m ?(*A)[i+1] : numeric_limits<int>::max();
-            Bl = j >= 0 ? (*B)[j] :numeric_limits<int>::min();
-            Br = j+1 < n ?(*B)[j+1] : numeric_limits<int>::max();
+        int st = 0 , end = m;
+
+        while(st <= end)
+        {
+            int i = (st + end)/2;
+            int j = (m+n+1)/2 - i;
+
+            int Al = i == 0 ? numeric_limits<int>::min() : nums1[i - 1];
+            int Ar = i == m ? numeric_limits<int>::max() : nums1[i];
+            int Bl = j == 0 ? numeric_limits<int>::min() : nums2[j - 1];
+            int Br = j == n ? numeric_limits<int>::max() : nums2[j];
+
             if(Al <= Br && Bl <= Ar)
             {
-                if((m+n) % 2 != 0)
-                return std::max(Al , Bl);
+                if((m+n)%2 == 0)
+                return ((double)max(Al,Bl) + min(Ar,Br))/2.0;
                 else
-                return ((double)std::max(Al,Bl) + std::min(Ar,Br))/2.0;
+                return max(Al,Bl);
             }
             else if(Al > Br)
             end = i - 1;
             else
             st = i + 1;
         }
+
+        return 0.0;
     }
 };
